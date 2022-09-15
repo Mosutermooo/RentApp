@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RentApp</string>
+    <string name="rents">Rents</string>
+    <string name="suv">SUV</string>
+    <string name="sedan">SEDAN</string>
+    <string name="coupe">COUPE</string>
+    <string name="sport_car">SPORT CAR</string>
+    <string name="station_wagon">STATION WAGON</string>
+    <string name="convertible">CONVERTIBLE</string>
+    <string name="minivan">MINIVAN</string>
+    <string name="pickup_truck">PICKUP TRUCK</string>
+    <string name="hatchback">HATCHBACK</string>
+    <string name="all_cars">All Cars</string>
+    <string name="settings">settings</string>
+</resources>

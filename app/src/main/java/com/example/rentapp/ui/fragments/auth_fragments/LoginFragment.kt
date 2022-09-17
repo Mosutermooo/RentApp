@@ -72,6 +72,7 @@ class LoginFragment : Fragment() {
                             )
 
                         }
+                        is Resource.Idle -> {}
                     }
                 }
             }

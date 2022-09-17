@@ -27,8 +27,9 @@ sealed class HomeRecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHol
             }
             binding.brandModelType.text = "${car.car_Brand}-${car.car_Model}-${car.car_Type}"
             binding.price.text = "$${car.totalPrice}/day"
+            val image = car.carImage[0]
             Glide.with(binding.root)
-                .load(car.carImage[0])
+                .load(image.imageUrl)
                 .placeholder(R.color.GrayishColor)
                 .centerCrop()
                 .into(binding.carImage)

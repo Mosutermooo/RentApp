@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.rentapp"
-        minSdk 21
+        minSdk 28
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -92,5 +92,7 @@ dependencies {
 
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 
 }

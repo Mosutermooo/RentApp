@@ -96,6 +96,12 @@ class MainActivity : AppCompatActivity() {
             getEveryCar()
         }
 
+        homeAdapter.setOnClickListener {
+            val intent = Intent(this, RentScreen::class.java)
+            intent.putExtra("car", it)
+            startActivity(intent)
+        }
+
 
 
 
@@ -109,6 +115,10 @@ class MainActivity : AppCompatActivity() {
             when(it){
                 is Resource.Success -> {
                     homeAdapter.differ.submitList(it.data)
+                }
+                is Resource.Error -> TODO()
+                else -> {
+
                 }
             }
         }
@@ -138,6 +148,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+                else -> {}
             }
         }
     }
@@ -156,6 +167,7 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     homeAdapter.differ.submitList(it.data)
                 }
+                else -> {}
             }
         }
     }
@@ -182,6 +194,7 @@ class MainActivity : AppCompatActivity() {
                         Resources.hideProgressDialog()
                         homeAdapter.differ.submitList(it.data)
                     }
+                    else -> {}
                 }
             }
         }

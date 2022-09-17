@@ -71,12 +71,18 @@ class Settings : Fragment() {
                         isEditProfile = true
                         binding.EditProfile.text = getString(R.string.edit_profile)
                         binding.emailOrNotLoggedIn.text = user.email
-                        binding.nameLastname.text = "${user.name} - ${user.lastname}"
+                        if(user.name == "" && user.lastname == ""){
+                            binding.nameLastname.text = "No name - No lastname"
+                        }else{
+                            binding.nameLastname.text = "${user.name} - ${user.lastname}"
+                        }
                         binding.emailOrNotLoggedIn.visibility = View.VISIBLE
                         binding.nameLastname.visibility = View.VISIBLE
                     }
 
                 }
+                is Resource.Idle -> {}
+                is Resource.Loading -> {}
             }
         }
     }

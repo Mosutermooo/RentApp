@@ -28,6 +28,9 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewHolder>() {
         val car = differ.currentList[position]
         if(holder is HomeRecyclerViewHolder.CarViewHolder){
             holder.bind(car)
+            holder.itemView.setOnClickListener {
+                onClickListener?.invoke(car)
+            }
         }
     }
 
@@ -44,4 +47,11 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewHolder>() {
     }
 
     val differ = AsyncListDiffer(this, differCallback)
+
+    private var onClickListener: ((Car) -> Unit)? = null
+
+    fun setOnClickListener(listener: (Car) -> Unit){
+        onClickListener = listener
+    }
+
 }

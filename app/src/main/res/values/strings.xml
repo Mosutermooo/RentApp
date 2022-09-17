@@ -34,4 +34,7 @@
     <string name="password_too_small">Password too small</string>
     <string name="invalid_email">Invalid email</string>
     <string name="signed_in_sucessfully">Signed up successfully</string>
+    <string name="fast_select">Fast Select</string>
+    <string name="rent_the_car">Rent the car</string>
+    <string name="favorite">Favorite</string>
 </resources>

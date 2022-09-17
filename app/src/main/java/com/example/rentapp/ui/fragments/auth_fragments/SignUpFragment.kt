@@ -1,6 +1,7 @@
 package com.example.rentapp.ui.fragments.auth_fragments
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,12 +60,14 @@ class SignUpFragment : Fragment() {
                         }
                         is Resource.Loading -> Resources.showProgressDialog()
                         is Resource.Success -> {
+                            Resources.hideProgressDialog()
                             Resources.showSnackBar(
                                 getString(R.string.signed_in_sucessfully),
                                 requireActivity() as AppCompatActivity
                             )
-                            requireActivity().onBackPressed()
+                            Handler().postDelayed({ requireActivity().onBackPressed() }, 500)
                         }
+                        is Resource.Idle -> {}
                     }
                 }
             }

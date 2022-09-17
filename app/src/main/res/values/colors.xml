@@ -13,5 +13,6 @@
     <color name="CarRecyclerViewColor">#DDDCDF</color>
     <color name="TabLayoutTextColor">#858585</color>
     <color name="LoadingDialogColor">#F4B755</color>
+    <color name="BlueColor">#0169FD</color>
 
 </resources>

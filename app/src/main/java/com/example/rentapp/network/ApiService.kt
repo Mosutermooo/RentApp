@@ -1,10 +1,10 @@
 package com.example.rentapp.network
 
-import com.example.models.Car
-import com.example.models.CarResponse
-import com.example.models.UserResponseParams
+import com.example.models.*
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -21,5 +21,15 @@ interface ApiService {
     suspend fun getUserData(
         @Path("userId") userId: String
     ) : Response<UserResponseParams>
+
+    @POST("auth/register")
+    suspend fun signUpUser(
+        @Body params: RegisterUserParams
+    ) : Response<RegisterResponse>
+
+    @POST("auth/login")
+    suspend fun loginUser(
+        @Body params: LoginParams
+    ) : Response<LoginResponse>
 
 }

@@ -1,7 +1,9 @@
 package com.example.rentapp.ui.activies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var homeAdapter: HomeRecyclerViewAdapter
+    private lateinit var adminSettings: MenuItem
     private var shouldShowAdminIcon: Boolean = true
     private var shouldShowRentedCarIcon: Boolean = true
 
@@ -34,15 +37,25 @@ class MainActivity : AppCompatActivity() {
         carViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(CarViewModel::class.java)
         userViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(UserViewModel::class.java)
         homeAdapter = HomeRecyclerViewAdapter()
+        isUserLoggedIn()
+        getEveryCar()
         Resources.initProgressDialog(this)
 
+        binding.Toolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.Settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
 
         binding.CarRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = homeAdapter
         }
-        isUserLoggedIn()
-        getEveryCar()
+
 
         binding.tabLayout.addOnTabSelectedListener(object  : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -114,7 +127,15 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     it.data?.let {user->
                         binding.Toolbar.title = user.name
-                        binding.Toolbar.subtitle = user.lastname
+                        binding.Toolbar.subtitle = user.username
+                        if(user.role == "admin"){
+                            shouldShowAdminIcon = true
+                            adminSettings.isVisible = shouldShowAdminIcon
+                        }
+                        if(user.role == "user"){
+                            shouldShowAdminIcon = false
+                            adminSettings.isVisible = shouldShowAdminIcon
+                        }
                     }
                 }
             }
@@ -168,10 +189,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-        val adminSettings = menu?.findItem(R.id.AdminSettings)
-        val rentedCars = menu?.findItem(R.id.UserRents)
-        adminSettings?.isVisible = shouldShowAdminIcon
-        rentedCars?.isVisible = shouldShowRentedCarIcon
+        adminSettings = menu?.findItem(R.id.AdminSettings)!!
+        adminSettings.isVisible = shouldShowAdminIcon
         return true
     }
 

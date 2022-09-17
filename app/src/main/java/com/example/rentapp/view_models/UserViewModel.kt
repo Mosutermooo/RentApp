@@ -1,12 +1,17 @@
 package com.example.rentapp.view_models
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.models.LoginParams
 import com.example.models.User
 import com.example.models.UserResponseParams
 import com.example.rentapp.db.Database
 import com.example.rentapp.network.ApiInstance
+import com.example.rentapp.network.SeasonManager
+import com.example.rentapp.repositories.AuthRepositoryImpl
+import com.example.rentapp.repositories.AuthRepositoryTestImpl
 import com.example.rentapp.repositories.UserRepositoryImpl
 import com.example.rentapp.uitls.Const.password
 import com.example.rentapp.uitls.Const.role
@@ -30,6 +35,10 @@ class UserViewModel(
         ApiInstance.apiService(app),
         Database.database(app).dbService()
     )
+    val seasonManager = SeasonManager(app)
+    val authRepository = AuthRepositoryImpl(
+        ApiInstance.apiService(app)
+    )
 
     fun getUserData() = viewModelScope.launch {
         val username = dataStore.read(username)
@@ -37,18 +46,33 @@ class UserViewModel(
         val userId = dataStore.read(userId)
         val role = dataStore.read(role)
         if(username != null && password != null && userId != null && role != null){
-            safeGetUserDataCall(
-                username,
-                password,
-                userId,
-                role
-            )
+            reAuthUser(username, password, userId, role)
         }else{
             getUserDataState.emit(Resource.Error(null, "Error Not Logged In"))
         }
 
     }
 
+    private fun reAuthUser(username: String, password: String, userId: String, role: String)  = viewModelScope.launch {
+        getUserDataState.emit(Resource.Loading())
+        val params = LoginParams(
+            username, password
+        )
+        val response = authRepository.loginUser(params)
+        if(response.isSuccessful){
+            response.body()?.let {
+                if(it.success){
+                    seasonManager.saveToken(it.token.toString())
+                    safeGetUserDataCall(
+                        username,
+                        password,
+                        userId,
+                        role
+                    )
+                }
+            }
+        }
+    }
     private fun safeGetUserDataCall(
         username: String,
         password: String,
@@ -75,6 +99,7 @@ class UserViewModel(
         if(response.isSuccessful){
             val user = response.body()?.user
             if(user != null){
+                Log.e("in handling user data", "${response.body()?.let { it.user?.username }}")
                 return Resource.Success(user)
             }
         }

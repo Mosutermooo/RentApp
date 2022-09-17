@@ -4,10 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable-v24/car_types_background.xml" value="0.294" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/auth_edit_text_bg.xml" value="0.2985" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/car_types_background.xml" value="0.294" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/edit_profile_button_press.xml" value="0.2985" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/edit_profile_button_press_background.xml" value="0.2985" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.2985" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/sign_in_sign_up_button_press.xml" value="0.2985" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/sign_in_sign_up_buttons_bg.xml" value="0.2985" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/sign_up_background.xml" value="0.2985" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/sign_up_background_press.xml" value="0.2985" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/drawable/toolbar_bg.xml" value="0.22" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout-v23/fragment_option.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/activity_auth.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/activity_settings.xml" value="0.14629629629629629" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/car_item_view.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/fragment_login.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/fragment_option.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/fragment_settings.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/fragment_sign_up.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/layout/loading_dialog.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/RentApp/app/src/main/res/menu/main_menu.xml" value="0.3625" />
       </map>

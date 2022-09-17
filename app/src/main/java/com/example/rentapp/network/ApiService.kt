@@ -2,10 +2,7 @@ package com.example.rentapp.network
 
 import com.example.models.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -31,5 +28,17 @@ interface ApiService {
     suspend fun loginUser(
         @Body params: LoginParams
     ) : Response<LoginResponse>
+
+
+    @POST("rent/car")
+    suspend fun rentACar(
+        @Body params: RentCarRequestParams
+    ): Response<RentCarResponseParams>
+
+    @GET("rent/carStatus")
+    suspend fun getCarStatus(
+        @Query("carId") carId: Int
+    ) : String
+
 
 }

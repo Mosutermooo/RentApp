@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.models.Car
 import com.example.models.CarResponse
+import com.example.models.RentCarRequestParams
 import com.example.rentapp.db.Database
 import com.example.rentapp.network.ApiInstance
 import com.example.rentapp.repositories.CarRepositoryImpl
@@ -69,6 +70,10 @@ class CarViewModel(
         if(cars.isNotEmpty()){
             carByTypeState.emit(Resource.Success(cars))
         }
+    }
+
+    fun rentCar(params: RentCarRequestParams){
+
     }
 
 

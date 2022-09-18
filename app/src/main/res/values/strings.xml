@@ -37,4 +37,7 @@
     <string name="fast_select">Fast Select</string>
     <string name="rent_the_car">Rent the car</string>
     <string name="favorite">Favorite</string>
+    <string name="car_rented">Car Rented</string>
+    <string name="make_sure_to_show_this_rentid_when_you_go_to_pick_up_the_car_you_can_always_find_it_in_your_rents_in_settings">Make sure to show this rentId when you go to pick up the car, you can always find it in your rents in settings</string>
+    <string name="ok">OK</string>
 </resources>

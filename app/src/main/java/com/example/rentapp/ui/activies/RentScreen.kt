@@ -14,13 +14,17 @@ import com.example.rentapp.R
 import com.example.rentapp.adapters.CarImageViewPagerAdapter
 import com.example.rentapp.adapters.FastSelectAdapter
 import com.example.rentapp.databinding.ActivityRentScreenBinding
+import com.example.rentapp.ui.dialogs.CarRentFinishDialog
 import com.example.rentapp.uitls.Const
+import com.example.rentapp.uitls.Resource
+import com.example.rentapp.uitls.Resources.hideProgressDialog
+import com.example.rentapp.uitls.Resources.showProgressDialog
 import com.example.rentapp.uitls.Resources.showSnackBar
 import com.example.rentapp.uitls.UserDataStore
 import com.example.rentapp.use_cases.FastSelectUseCase
-import com.example.rentapp.view_models.CarViewModel
+import com.example.rentapp.view_models.RentViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
 
 
 class RentScreen : AppCompatActivity() {
@@ -28,7 +32,7 @@ class RentScreen : AppCompatActivity() {
     private lateinit var fastSelectAdapter: FastSelectAdapter
     private var fastSelectPlansUseCase = FastSelectUseCase()
     private lateinit var addToFavorite: MenuItem
-    private lateinit var carViewModel: CarViewModel
+    private lateinit var rentViewModel: RentViewModel
     private lateinit var addedToFavorite: MenuItem
     private lateinit var dataStore: UserDataStore
     private var price: Int? = null
@@ -40,8 +44,8 @@ class RentScreen : AppCompatActivity() {
         binding = ActivityRentScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        carViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(
-            CarViewModel::class.java)
+        rentViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(
+            RentViewModel::class.java)
         fastSelectAdapter = FastSelectAdapter()
         dataStore = UserDataStore(this)
         val car = intent.getSerializableExtra("car") as Car
@@ -78,20 +82,55 @@ class RentScreen : AppCompatActivity() {
     }
 
     private fun rentCar(car: Car) = lifecycleScope.launch{
-        if(price != null){
-            val params = RentCarRequestParams(
-                car.id!!,
-                dataStore.read(Const.userId)!!,
-                price!!,
-                rentTime!!
+        val userId = dataStore.read(Const.userId)
+        if(userId != null){
+            if(price != null){
+                val params = RentCarRequestParams(
+                    car.id!!,
+                    userId,
+                    price!!,
+                    rentTime!!
                 )
-            carViewModel.rentCar(params)
+                initRentCarRequest(params)
+            }else{
+                showSnackBar(
+                    "price: $price",
+                    this@RentScreen
+                )
+            }
         }else{
             showSnackBar(
-                "price: $price",
+                "Please login to rent this car",
                 this@RentScreen
             )
         }
+
+    }
+
+    private fun initRentCarRequest(params: RentCarRequestParams) = lifecycleScope.launchWhenStarted {
+        rentViewModel.getCarStatus(params)
+        rentViewModel.rentState.collect{
+            when(it){
+                is Resource.Error -> {
+                    hideProgressDialog()
+                    it.message?.let { message ->
+                        showSnackBar(
+                            message,
+                            this@RentScreen
+                        )
+                    }
+                }
+                is Resource.Loading -> showProgressDialog()
+                is Resource.Success -> {
+                    hideProgressDialog()
+                    it.data?.let { responseParams ->
+                        CarRentFinishDialog(responseParams.rentId!!).show(supportFragmentManager, "CAR_RENT_FINISH")
+                    }
+                }
+                else -> {}
+            }
+        }
+
     }
 
     fun displayData(car: Car){
@@ -107,7 +146,7 @@ class RentScreen : AppCompatActivity() {
             binding.status.text = car.status
         }else{
             binding.status.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-            binding.rent.isEnabled= false
+            binding.rent.isEnabled = false
             binding.rent.text =  car.status
             binding.status.text = car.status
         }

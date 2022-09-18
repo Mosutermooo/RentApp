@@ -12,4 +12,5 @@ interface CarRepository {
     fun getCachedCars() : LiveData<List<Car>>
     suspend fun deleteCachedCars()
     suspend fun getCarByTypeDb(type: String): List<Car>
+
 }

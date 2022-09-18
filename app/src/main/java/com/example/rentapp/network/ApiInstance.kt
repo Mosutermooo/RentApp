@@ -2,6 +2,8 @@ package com.example.rentapp.network
 
 import android.content.Context
 import com.example.rentapp.uitls.Const.BASE_URL
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -11,9 +13,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+
 object ApiInstance {
 
     private val logging = HttpLoggingInterceptor()
+    private var gson: Gson = GsonBuilder()
+        .setLenient()
+        .create()
 
 
     private fun okHttpClient(context: Context) : OkHttpClient {
@@ -30,7 +36,7 @@ object ApiInstance {
 
     fun apiService(context: Context): ApiService {
         val serviceBuilder = Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient(context)).build()
         return serviceBuilder.create(ApiService::class.java)
     }

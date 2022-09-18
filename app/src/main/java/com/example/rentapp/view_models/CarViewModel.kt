@@ -72,9 +72,7 @@ class CarViewModel(
         }
     }
 
-    fun rentCar(params: RentCarRequestParams){
 
-    }
 
 
 

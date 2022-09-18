@@ -38,7 +38,7 @@ interface ApiService {
     @GET("rent/carStatus")
     suspend fun getCarStatus(
         @Query("carId") carId: Int
-    ) : String
+    ) : Response<String>
 
 
 }

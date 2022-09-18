@@ -4,6 +4,6 @@ import java.io.Serializable
 
 data class FastSelectPlans(
     val price: Int,
-    val days: Int,
+    val days: Long,
     val name: String
 ): Serializable

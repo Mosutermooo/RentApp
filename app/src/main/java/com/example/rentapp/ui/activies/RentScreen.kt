@@ -157,6 +157,7 @@ class RentScreen : AppCompatActivity() {
 
 
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.rent_car_menu, menu)
         addToFavorite = menu?.findItem(R.id.addToFavorite)!!

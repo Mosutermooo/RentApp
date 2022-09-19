@@ -2,6 +2,7 @@ package com.example.rentapp.repositories
 
 import com.example.models.RentCarRequestParams
 import com.example.models.RentCarResponseParams
+import com.example.models.RentsResponseParams
 import com.example.rentapp.network.ApiService
 import retrofit2.Response
 
@@ -15,5 +16,9 @@ class RentRepositoryImpl(
 
     override suspend fun getCarStatus(carId: Int): Response<String> {
         return apiService.getCarStatus(carId)
+    }
+
+    override suspend fun getUserRents(userId: String): Response<RentsResponseParams> {
+        return apiService.getUserRents(userId)
     }
 }

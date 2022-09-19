@@ -40,5 +40,9 @@ interface ApiService {
         @Query("carId") carId: Int
     ) : Response<String>
 
+    @GET("cars/userRents/{userId}")
+    suspend fun getUserRents(
+        @Path("userId") userId: String
+    ) : Response<RentsResponseParams>
 
 }

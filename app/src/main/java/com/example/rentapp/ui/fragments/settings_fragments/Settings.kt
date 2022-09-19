@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.rentapp.R
 import com.example.rentapp.databinding.FragmentSettingsBinding
 import com.example.rentapp.ui.activies.AuthActivity
@@ -51,6 +52,10 @@ class Settings : Fragment() {
             }else{
 
             }
+        }
+
+        binding.Rents.setOnClickListener{
+            findNavController().navigate(R.id.action_settings_to_userRentsFragment)
         }
     }
 

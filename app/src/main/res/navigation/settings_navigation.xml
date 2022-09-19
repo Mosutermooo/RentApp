@@ -9,5 +9,14 @@
         android:id="@+id/settings"
         android:name="com.example.rentapp.ui.fragments.settings_fragments.Settings"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_userRentsFragment"
+            app:destination="@id/userRentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRentsFragment"
+        android:name="com.example.rentapp.ui.fragments.settings_fragments.UserRentsFragment"
+        android:label="fragment_user_rents"
+        tools:layout="@layout/fragment_user_rents" />
 </navigation>

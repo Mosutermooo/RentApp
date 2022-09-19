@@ -40,4 +40,13 @@
     <string name="car_rented">Car Rented</string>
     <string name="make_sure_to_show_this_rentid_when_you_go_to_pick_up_the_car_you_can_always_find_it_in_your_rents_in_settings">Make sure to show this rentId when you go to pick up the car, you can always find it in your rents in settings</string>
     <string name="ok">OK</string>
+    <string name="content">Content</string>
+    <string name="favorites">Favorites</string>
+    <string name="preferences">Preferences</string>
+    <string name="allow_new_car_notifications">Allow new car notifications</string>
+    <string name="notifications">Notifications</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="other">Other</string>
+    <string name="locate_us">Locate Us</string>
+    <string name="log_out">Log Out</string>
 </resources>

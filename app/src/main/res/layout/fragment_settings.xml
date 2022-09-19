@@ -79,6 +79,169 @@
                 app:layout_constraintTop_toBottomOf="@+id/emailOrNotLoggedIn" />
 
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GrayishColor"
+                android:padding="10dp"
+                android:text="@string/content"
+                android:textColor="@color/TabLayoutTextColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EditProfile" />
+
+            <TextView
+                android:id="@+id/Favorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="?attr/selectableItemBackground"
+                android:text="@string/favorites"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24" />
+
+            <TextView
+                android:id="@+id/Rents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/rents"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Favorites" />
+
+            <TextView
+                android:id="@+id/Notfications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/notifications"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_notifications_active_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Rents" />
+
+
+            <TextView
+                android:id="@+id/Preferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GrayishColor"
+                android:padding="10dp"
+                android:text="@string/preferences"
+                android:textColor="@color/TabLayoutTextColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Notfications" />
+
+
+            <TextView
+                android:id="@+id/NewCarNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/allow_new_car_notifications"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_circle_notifications_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Preferences" />
+
+            <TextView
+                android:id="@+id/ContactUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/contact_us"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_contact_support_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NewCarNotifications" />
+
+            <TextView
+                android:id="@+id/LocateUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/locate_us"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ContactUs" />
+
+
+
+            <TextView
+                android:id="@+id/Other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GrayishColor"
+                android:padding="10dp"
+                android:text="@string/other"
+                android:textColor="@color/TabLayoutTextColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ContactUs" />
+
+
+            <TextView
+                android:id="@+id/LogOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/log_out"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_logout_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LocateUs" />
+
+
+
+
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

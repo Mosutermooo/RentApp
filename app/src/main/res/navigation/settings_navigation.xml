@@ -18,5 +18,19 @@
         android:id="@+id/userRentsFragment"
         android:name="com.example.rentapp.ui.fragments.settings_fragments.UserRentsFragment"
         android:label="fragment_user_rents"
-        tools:layout="@layout/fragment_user_rents" />
+        tools:layout="@layout/fragment_user_rents" >
+        <action
+            android:id="@+id/action_userRentsFragment_to_viewRentFragment"
+            app:destination="@id/viewRentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewRentFragment"
+        android:name="com.example.rentapp.ui.fragments.settings_fragments.ViewRentFragment"
+        android:label="fragment_view_rent"
+        tools:layout="@layout/fragment_view_rent" >
+        <argument
+            android:name="rent"
+            app:argType="com.example.models.AllRentsResponseParams"
+            app:nullable="true" />
+    </fragment>
 </navigation>

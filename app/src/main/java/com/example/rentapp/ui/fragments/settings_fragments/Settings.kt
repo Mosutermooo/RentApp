@@ -88,6 +88,7 @@ class Settings : Fragment() {
                 }
                 is Resource.Idle -> {}
                 is Resource.Loading -> {}
+                is Resource.Internet -> {}
             }
         }
     }

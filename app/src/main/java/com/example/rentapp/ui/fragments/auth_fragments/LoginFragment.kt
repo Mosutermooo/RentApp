@@ -73,6 +73,7 @@ class LoginFragment : Fragment() {
 
                         }
                         is Resource.Idle -> {}
+                        is Resource.Internet -> {}
                     }
                 }
             }

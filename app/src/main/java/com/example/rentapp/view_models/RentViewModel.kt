@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 class RentViewModel(private var app: Application) : AndroidViewModel(app) {
@@ -59,6 +60,8 @@ class RentViewModel(private var app: Application) : AndroidViewModel(app) {
             }
         }catch (s: SocketTimeoutException){
             rentState.emit(Resource.Error(null, "Socket-Error"))
+        }catch (c: ConnectException){
+            rentState.emit(Resource.Error(null, "Connect-Exception"))
         }
 
     }
@@ -87,17 +90,19 @@ class RentViewModel(private var app: Application) : AndroidViewModel(app) {
                 val response = apiService.getUserRents(userId!!)
                 userRentsState.emit(handleUserRentsResponse(response))
             }else{
-                userRentsState.emit(Resource.Error(null, app.getString(R.string.no_internet_connection)))
+                userRentsState.emit(Resource.Internet(app.getString(R.string.no_internet_connection)))
             }
         }catch (t: Throwable){
             when(t){
                 is IOException -> {
-                    rentState.emit(Resource.Error(null,"IOException"))
+                    userRentsState.emit(Resource.Error(null,"IOException"))
                 }
-                else -> rentState.emit(Resource.Error(null, t.message.toString()))
+                else -> userRentsState.emit(Resource.Error(null, t.message.toString()))
             }
         }catch (s: SocketTimeoutException){
-            rentState.emit(Resource.Error(null, "Socket-Error"))
+            userRentsState.emit(Resource.Error(null, "Socket-Error"))
+        }catch (c: ConnectException){
+            userRentsState.emit(Resource.Error(null, "Connect-Exception"))
         }
 
     }

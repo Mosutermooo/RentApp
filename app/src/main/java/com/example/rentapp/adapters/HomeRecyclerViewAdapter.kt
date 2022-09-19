@@ -50,6 +50,7 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewHolder>() {
 
     private var onClickListener: ((Car) -> Unit)? = null
 
+
     fun setOnClickListener(listener: (Car) -> Unit){
         onClickListener = listener
     }

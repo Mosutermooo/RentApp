@@ -68,6 +68,7 @@ class SignUpFragment : Fragment() {
                             Handler().postDelayed({ requireActivity().onBackPressed() }, 500)
                         }
                         is Resource.Idle -> {}
+                        is Resource.Internet -> {}
                     }
                 }
             }

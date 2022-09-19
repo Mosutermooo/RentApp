@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 class AuthViewModel(
@@ -86,6 +87,8 @@ class AuthViewModel(
             }
         }catch (s: SocketTimeoutException){
             signUpUserState.emit(Resource.Error(null, "Socket-Error"))
+        }catch (c: ConnectException){
+            signUpUserState.emit(Resource.Error(null, "Connect-Exception"))
         }
     }
 

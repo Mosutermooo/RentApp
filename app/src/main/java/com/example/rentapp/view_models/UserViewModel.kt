@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 class UserViewModel(
@@ -92,6 +93,8 @@ class UserViewModel(
             }
         }catch (s: SocketTimeoutException){
             getUserDataState.emit(Resource.Error(null, "Socket-Error"))
+        }catch (c: ConnectException){
+            getUserDataState.emit(Resource.Error(null, "Connect-Exception"))
         }
     }
 

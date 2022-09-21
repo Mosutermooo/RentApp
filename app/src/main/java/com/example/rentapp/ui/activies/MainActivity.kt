@@ -1,7 +1,9 @@
 package com.example.rentapp.ui.activies
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -31,18 +33,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding =  ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.Toolbar)
-        carViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(CarViewModel::class.java)
-        userViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(UserViewModel::class.java)
+        carViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application)
+            .create(CarViewModel::class.java)
+        userViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(this.application)
+            .create(UserViewModel::class.java)
         homeAdapter = HomeRecyclerViewAdapter()
         isUserLoggedIn()
         getEveryCar()
         Resources.initProgressDialog(this)
 
         binding.Toolbar.setOnMenuItemClickListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.Settings -> {
                     val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
@@ -57,9 +61,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        binding.tabLayout.addOnTabSelectedListener(object  : TabLayout.OnTabSelectedListener{
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.position){
+                when (tab?.position) {
                     0 -> {
                         getJustEveryCar()
                     }
@@ -99,14 +103,16 @@ class MainActivity : AppCompatActivity() {
         homeAdapter.setOnClickListener {
             val intent = Intent(this, RentScreen::class.java)
             intent.putExtra("car", it)
-            startActivity(intent)
+            startActivityForResult(intent, 200)
         }
 
+    }
 
-
-
-
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val logout = data?.getStringExtra("logout")
+        Log.e("logout text ", "$logout")
+        isUserLoggedIn()
     }
 
     private fun getJustEveryCar() = lifecycleScope.launchWhenStarted {

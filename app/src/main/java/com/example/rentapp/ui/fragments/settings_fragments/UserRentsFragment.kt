@@ -65,7 +65,7 @@ class UserRentsFragment : Fragment() {
         }
 
         rentAdapter.setOnClickListener {
-            val action = UserRentsFragmentDirections.actionUserRentsFragmentToViewRentFragment(it)
+            val action = UserRentsFragmentDirections.actionUserRentsFragmentToViewRentFragment(it.rentId.toString())
             findNavController().navigate(action)
         }
 

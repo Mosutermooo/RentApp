@@ -12,4 +12,5 @@ interface RentRepository {
     suspend fun rentACar(params: RentCarRequestParams): Response<RentCarResponseParams>
     suspend fun getCarStatus(carId: Int) : Response<String>
     suspend fun getUserRents(userId: String) : Response<RentsResponseParams>
+    suspend fun getRentsByRentId(rentId: String) : Response<RentsResponseParams>
 }

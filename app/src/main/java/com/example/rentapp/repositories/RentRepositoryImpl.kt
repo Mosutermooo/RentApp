@@ -21,4 +21,8 @@ class RentRepositoryImpl(
     override suspend fun getUserRents(userId: String): Response<RentsResponseParams> {
         return apiService.getUserRents(userId)
     }
+
+    override suspend fun getRentsByRentId(rentId: String): Response<RentsResponseParams> {
+        return apiService.getRentsByRentId(rentId)
+    }
 }

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.rentapp.R
 import com.example.rentapp.databinding.FragmentSettingsBinding
 import com.example.rentapp.ui.activies.AuthActivity
+import com.example.rentapp.ui.dialogs.LogOutDialog
 import com.example.rentapp.uitls.Resource
 import com.example.rentapp.uitls.Resources
 import com.example.rentapp.view_models.UserViewModel
@@ -56,6 +57,10 @@ class Settings : Fragment() {
 
         binding.Rents.setOnClickListener{
             findNavController().navigate(R.id.action_settings_to_userRentsFragment)
+        }
+
+        binding.LogOut.setOnClickListener {
+            LogOutDialog().show(parentFragmentManager, "LOG_OUT_DIALOG")
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.rentapp.adapters
 import android.graphics.drawable.Drawable
 import android.view.*
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.drawable.toBitmap
 import androidx.palette.graphics.Palette
@@ -19,7 +20,7 @@ import com.example.rentapp.uitls.Resources
 
 class CarImageViewPagerAdapter(
     private var carImages: List<CarImage>,
-    private val rentScreen: RentScreen,
+    private val activity: AppCompatActivity,
     private val imageVibrant: ConstraintLayout
 ) : RecyclerView.Adapter<CarImageViewPagerAdapter.ViewHolder>() {
     inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
@@ -52,7 +53,7 @@ class CarImageViewPagerAdapter(
                 ): Boolean {
                     Resources.showSnackBar(
                         "Couldn't load image",
-                        rentScreen
+                        activity
                     )
                     return false
                 }
@@ -68,7 +69,7 @@ class CarImageViewPagerAdapter(
                         it?.let {
                             val color = it.mutedSwatch?.rgb ?: R.color.black
                             imageVibrant.setBackgroundColor(color)
-                            val window: Window = rentScreen.window
+                            val window: Window = activity.window
                             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                             window.statusBarColor = color
                         }

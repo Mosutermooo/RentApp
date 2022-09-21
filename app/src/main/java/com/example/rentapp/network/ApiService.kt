@@ -45,4 +45,9 @@ interface ApiService {
         @Path("userId") userId: String
     ) : Response<RentsResponseParams>
 
+    @GET("cars/rents/rentByRentId/{rentId}")
+    suspend fun getRentsByRentId(
+        @Path("rentId") rentId: String
+    ) : Response<RentsResponseParams>
+
 }

@@ -1,27 +1,24 @@
 package com.example.rentapp.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.models.AllRentsResponseParams
-import com.example.models.Car
 import com.example.rentapp.R
-import com.example.rentapp.databinding.FragmentUserRentsBinding
 import com.example.rentapp.databinding.RentItemViewBinding
-import java.util.concurrent.TimeUnit
+import com.example.rentapp.uitls.Resources
 
 class RentsAdapter : RecyclerView.Adapter<RentsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: RentItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(rent: AllRentsResponseParams) {
-            binding.brandModelType.text = "${rent.car?.car_Brand}-${rent.car?.car_Model}-${rent.car?.car_Type}"
+            binding.brandModelType.text = "${rent.car.car_Brand}-${rent.car.car_Model}-${rent.car.car_Type}"
             binding.rentId.text = "renId: ${rent.rentId}"
             binding.rentPrice.text = "$${rent.price}"
-            val rentTime = rent.rentTime.div(86400000L)
-            binding.renttime.text = "$rentTime"
+            val rentTime = Resources.millisToDays(rent.rentTime)
+            binding.renttime.text = "$rentTime Days"
             val imageUrl = rent.car.carImage[0].imageUrl
             Glide.with(binding.root)
                 .load(imageUrl)

@@ -29,8 +29,8 @@
         android:label="fragment_view_rent"
         tools:layout="@layout/fragment_view_rent" >
         <argument
-            android:name="rent"
-            app:argType="com.example.models.AllRentsResponseParams"
+            android:name="rentId"
+            app:argType="string"
             app:nullable="true" />
     </fragment>
 </navigation>

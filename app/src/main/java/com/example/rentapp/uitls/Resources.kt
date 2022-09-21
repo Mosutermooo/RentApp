@@ -44,4 +44,8 @@ object Resources {
         }
     }
 
+    fun millisToDays(millis: Long): Long{
+        return millis / 86400000L
+    }
+
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.rentapp.R
@@ -63,8 +64,10 @@ class LoginFragment : Fragment() {
                         is Resource.Success -> {
                             Resources.hideProgressDialog()
                             val intent = Intent(requireActivity(), MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
+                            ActivityCompat.finishAffinity(requireActivity())
                             requireActivity().finish()
                             Resources.showSnackBar(
                                 "Logged in successfully",

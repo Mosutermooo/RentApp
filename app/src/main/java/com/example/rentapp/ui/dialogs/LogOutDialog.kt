@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.example.rentapp.databinding.LogOutDialogViewBinding
+import com.example.rentapp.ui.activies.MainActivity
 import com.example.rentapp.uitls.UserDataStore
 import kotlinx.coroutines.launch
 
@@ -37,9 +38,10 @@ class LogOutDialog : DialogFragment() {
         binding.Logout.setOnClickListener {
             lifecycleScope.launch {
                 dataStore.delete()
-                val intent = Intent()
-                intent.putExtra("logout", "logout")
-                requireActivity().setResult(Activity.RESULT_OK, intent)
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
                 requireActivity().finish()
                 dismiss()
             }

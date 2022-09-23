@@ -4,21 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.settings_fragments.Settings">
+    tools:context=".ui.fragments.admin_settings.AdminSettingsFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/Toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
-    </com.google.android.material.appbar.AppBarLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,120 +21,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/Toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/name_lastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name Lastname" />
-
-            <TextView
-                android:id="@+id/emailOrNotLoggedIn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name_lastname"
-                tools:text="email@test.com"
-                android:text="@string/log_in_or_sign_up"/>
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/EditProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edit_profile_button_press"
-                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:drawablePadding="15dp"
-                android:paddingHorizontal="15dp"
-                android:text="@string/edit_profile"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailOrNotLoggedIn" />
-
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/GrayishColor"
                 android:padding="10dp"
-                android:text="@string/content"
+                android:text="@string/rent_settings"
                 android:textColor="@color/TabLayoutTextColor"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EditProfile" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/View_All_Rents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:background="?attr/selectableItemBackground"
-                android:text="@string/favorites"
-                android:textColor="@color/black"
-                android:textSize="15sp"
                 android:clickable="true"
                 android:drawablePadding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9"
-                app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24" />
-
-            <TextView
-                android:id="@+id/Rents"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="@string/rents"
+                android:text="@string/view_all_rents"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/View_All_Rents" />
-
-            <TextView
-                android:id="@+id/Add_fast_rent_deals"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:drawablePadding="10dp"
-                android:padding="10dp"
-                android:text="@string/notifications"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:drawableStartCompat="@drawable/ic_baseline_notifications_active_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Rents" />
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
             <TextView
@@ -148,12 +64,12 @@
                 android:layout_height="wrap_content"
                 android:background="@color/GrayishColor"
                 android:padding="10dp"
-                android:text="@string/preferences"
+                android:text="@string/car_settings"
                 android:textColor="@color/TabLayoutTextColor"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Add_fast_rent_deals" />
+                app:layout_constraintTop_toBottomOf="@+id/View_All_Rents" />
 
 
             <TextView
@@ -164,10 +80,10 @@
                 android:clickable="true"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="@string/allow_new_car_notifications"
+                android:text="@string/add_a_new_car"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:drawableStartCompat="@drawable/ic_baseline_circle_notifications_24"
+                app:drawableStartCompat="@drawable/ic_baseline_playlist_add_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CarSettings" />
@@ -180,10 +96,10 @@
                 android:clickable="true"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="@string/contact_us"
+                android:text="@string/change_car_status"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:drawableStartCompat="@drawable/ic_baseline_contact_support_24"
+                app:drawableStartCompat="@drawable/ic_baseline_car_crash_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NewCarNotifications" />
@@ -196,49 +112,99 @@
                 android:clickable="true"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="@string/locate_us"
+                android:text="@string/remove_a_car"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                app:drawableStartCompat="@drawable/ic_baseline_delete_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ContactUs" />
 
-
             <TextView
-                android:id="@+id/Other"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/GrayishColor"
-                android:padding="10dp"
-                android:text="@string/other"
-                android:textColor="@color/TabLayoutTextColor"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/LocateUs" />
-
-            <TextView
-                android:id="@+id/LogOut"
+                android:id="@+id/ChangeCarLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="@string/log_out"
+                android:text="@string/change_car_location"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:drawableStartCompat="@drawable/ic_baseline_logout_24"
+                app:drawableStartCompat="@drawable/ic_baseline_edit_location_alt_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Other"
-                android:focusable="true" />
+                app:layout_constraintTop_toBottomOf="@+id/LocateUs" />
+
+            <TextView
+                android:id="@+id/LocationSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GrayishColor"
+                android:padding="10dp"
+                android:text="@string/location_settings"
+                android:textColor="@color/TabLayoutTextColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ChangeCarLocation" />
+
+            <TextView
+                android:id="@+id/AddLocations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/add_a_new_location"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_add_location_alt_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LocationSettings" />
+
+            <TextView
+                android:id="@+id/SeeLocations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/see_all_locations"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AddLocations" />
+
+            <TextView
+                android:id="@+id/DeleteLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="@string/delete_location"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableStartCompat="@drawable/ic_baseline_wrong_location_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SeeLocations" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

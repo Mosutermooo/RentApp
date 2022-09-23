@@ -14,9 +14,13 @@ import com.example.rentapp.R
 import com.example.rentapp.databinding.FragmentSettingsBinding
 import com.example.rentapp.ui.activies.AuthActivity
 import com.example.rentapp.ui.dialogs.LogOutDialog
+import com.example.rentapp.uitls.Const
 import com.example.rentapp.uitls.Resource
 import com.example.rentapp.uitls.Resources
+import com.example.rentapp.uitls.Resources.showSnackBar
+import com.example.rentapp.uitls.UserDataStore
 import com.example.rentapp.view_models.UserViewModel
+import kotlinx.coroutines.launch
 
 
 class Settings : Fragment() {
@@ -24,6 +28,8 @@ class Settings : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var userViewModel: UserViewModel
     private var isEditProfile: Boolean = false
+
+    private lateinit var dataStore: UserDataStore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +41,7 @@ class Settings : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataStore = UserDataStore(requireContext())
 
         userViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application).create(
             UserViewModel::class.java)
@@ -60,7 +67,17 @@ class Settings : Fragment() {
         }
 
         binding.LogOut.setOnClickListener {
-            LogOutDialog().show(parentFragmentManager, "LOG_OUT_DIALOG")
+            lifecycleScope.launch{
+                val userId = dataStore.read(Const.userId)
+                if(userId != null){
+                    LogOutDialog().show(parentFragmentManager, "LOG_OUT_DIALOG")
+                }else{
+                    showSnackBar(
+                        getString(R.string.log_in_first),
+                        requireActivity() as AppCompatActivity
+                    )
+                }
+            }
         }
     }
 

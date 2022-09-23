@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 }
+                R.id.AdminSettings -> {
+                    val intent = Intent(this, AdminSettings::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }
@@ -122,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     homeAdapter.differ.submitList(it.data)
                 }
-                is Resource.Error -> TODO()
+                is Resource.Error -> {}
                 else -> {
 
                 }

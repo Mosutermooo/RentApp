@@ -55,4 +55,18 @@
     <string name="rent_details">Rent Details</string>
     <string name="are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
     <string name="cancel">Cancel</string>
+    <string name="log_in_first">Log in first</string>
+    <string name="admin_settings">Admin Settings</string>
+    <string name="rent_settings">Rent Settings</string>
+    <string name="view_all_rents">View All Rents</string>
+    <string name="add_fast_rent_deals">Add Fast Rent Deals</string>
+    <string name="car_settings">Car Settings</string>
+    <string name="add_a_new_car">Add a new car</string>
+    <string name="change_car_status">Change car status</string>
+    <string name="remove_a_car">Remove a car</string>
+    <string name="change_car_location">Change car location</string>
+    <string name="location_settings">Location Settings</string>
+    <string name="add_a_new_location">Add a new location</string>
+    <string name="see_all_locations">See all locations</string>
+    <string name="delete_location">Delete location</string>
 </resources>

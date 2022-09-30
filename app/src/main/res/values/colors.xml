@@ -12,6 +12,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="CarRecyclerViewColor">#DDDCDF</color>
     <color name="TabLayoutTextColor">#858585</color>
+    <color name="Capture_photo_button_color">#FFDD00</color>
     <color name="LoadingDialogColor">#F4B755</color>
     <color name="BlueColor">#0169FD</color>
 

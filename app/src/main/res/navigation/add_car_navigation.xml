@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_car_navigation"
+    app:startDestination="@id/cachedCarUploads">
+
+    <fragment
+        android:id="@+id/cachedCarUploads"
+        android:name="com.example.rentapp.ui.fragments.admin_settings.add_car_fragments.CachedCarUploads"
+        android:label="fragment_cached_car_uploads"
+        tools:layout="@layout/fragment_cached_car_uploads" >
+        <action
+            android:id="@+id/action_cachedCarUploads_to_addCarWizardFragment"
+            app:destination="@id/addCarWizardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCarWizardFragment"
+        android:name="com.example.rentapp.ui.fragments.admin_settings.add_car_fragments.AddCarWizardFragment"
+        android:label="fragment_add_car_wizard"
+        tools:layout="@layout/fragment_add_car_wizard" >
+        <action
+            android:id="@+id/action_addCarWizardFragment_to_cachedCarUploads"
+            app:destination="@id/cachedCarUploads"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <argument
+            android:name="cachedCarUpload"
+            app:argType="com.example.rentapp.models.add_car_cache_models.CacheUploadCarModel"
+            app:nullable="true" />
+    </fragment>
+</navigation>

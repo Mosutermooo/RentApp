@@ -2,6 +2,7 @@ package com.example.rentapp.network
 
 import android.content.Context
 import com.example.rentapp.uitls.Const.BASE_URL
+import com.example.rentapp.uitls.Const.BASE_URL2
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor

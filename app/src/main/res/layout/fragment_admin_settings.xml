@@ -73,7 +73,7 @@
 
 
             <TextView
-                android:id="@+id/NewCarNotifications"
+                android:id="@+id/AddNewCar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -102,7 +102,7 @@
                 app:drawableStartCompat="@drawable/ic_baseline_car_crash_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NewCarNotifications" />
+                app:layout_constraintTop_toBottomOf="@+id/AddNewCar" />
 
             <TextView
                 android:id="@+id/LocateUs"

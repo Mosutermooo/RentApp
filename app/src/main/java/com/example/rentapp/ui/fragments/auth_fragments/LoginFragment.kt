@@ -1,5 +1,6 @@
 package com.example.rentapp.ui.fragments.auth_fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,14 +14,21 @@ import androidx.lifecycle.lifecycleScope
 import com.example.rentapp.R
 import com.example.rentapp.databinding.FragmentLoginBinding
 import com.example.rentapp.ui.activies.MainActivity
+import com.example.rentapp.ui.dialogs.AddUsernameDialog
 import com.example.rentapp.uitls.Resource
 import com.example.rentapp.uitls.Resources
 import com.example.rentapp.view_models.AuthViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var gso: GoogleSignInOptions
+    private lateinit var gsc: GoogleSignInClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +41,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        gsc = GoogleSignIn.getClient(requireActivity(), gso)
+
 
         authViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
             .create(AuthViewModel::class.java)
@@ -42,6 +53,11 @@ class LoginFragment : Fragment() {
             requireActivity() as AppCompatActivity,
             getString(R.string.log_in)
         )
+
+        binding.GoogleSignIn.setOnClickListener {
+            val signInIntent = gsc.signInIntent
+            startActivityForResult(signInIntent, 303)
+        }
 
         binding.Login.setOnClickListener {
             lifecycleScope.launchWhenStarted {
@@ -81,11 +97,24 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && data != null){
+            when(requestCode){
+                303 -> {
+                    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    try {
+                        task.result
+                        val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+                        AddUsernameDialog(account).show(requireFragmentManager(), "ADD_USERNAME_DIALOG_TAG")
+                    }catch (e: ApiException){
 
-
-
-
+                    }
+                }
+            }
+        }
     }
 
 }

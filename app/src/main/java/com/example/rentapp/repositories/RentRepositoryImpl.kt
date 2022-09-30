@@ -13,7 +13,6 @@ class RentRepositoryImpl(
         return apiService.rentACar(params)
     }
 
-
     override suspend fun getCarStatus(carId: Int): Response<String> {
         return apiService.getCarStatus(carId)
     }
@@ -24,5 +23,9 @@ class RentRepositoryImpl(
 
     override suspend fun getRentsByRentId(rentId: String): Response<RentsResponseParams> {
         return apiService.getRentsByRentId(rentId)
+    }
+
+    override suspend fun getAllRents(): Response<RentsResponseParams> {
+        return apiService.getAllRents()
     }
 }

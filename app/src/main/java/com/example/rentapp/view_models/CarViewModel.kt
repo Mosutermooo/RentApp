@@ -10,7 +10,10 @@ import com.example.models.Car
 import com.example.models.CarResponse
 import com.example.models.RentCarRequestParams
 import com.example.rentapp.db.Database
+import com.example.rentapp.models.add_car_cache_models.CacheUploadCarModel
+import com.example.rentapp.models.add_car_cache_models.CachedCarImages
 import com.example.rentapp.network.ApiInstance
+import com.example.rentapp.repositories.CacheUploadRepositoryImpl
 import com.example.rentapp.repositories.CarRepositoryImpl
 import com.example.rentapp.uitls.NetworkConnection
 import com.example.rentapp.uitls.NetworkConnectivity
@@ -27,6 +30,7 @@ class CarViewModel(
     private val apiService = ApiInstance.apiService(app)
     private val dbService = Database.database(app).dbService()
     private val repository = CarRepositoryImpl(apiService, dbService)
+    private val addCarRepository: CacheUploadRepositoryImpl = CacheUploadRepositoryImpl(dbService)
     val everyCarState : MutableStateFlow<Resource<List<Car>>> = MutableStateFlow(Resource.Idle())
     val carByTypeState : MutableStateFlow<Resource<List<Car>>> = MutableStateFlow(Resource.Idle())
 
@@ -71,6 +75,42 @@ class CarViewModel(
             carByTypeState.emit(Resource.Success(cars))
         }
     }
+
+
+    fun addACarUploadCache(car: CacheUploadCarModel) = viewModelScope.launch {
+        addCarRepository.addACarUploadCache(car)
+    }
+
+    fun getAllCacheCarUploads() = addCarRepository.getAllCacheCarUploads()
+    fun getSingleCacheCarUpload(id: Int) = addCarRepository.getSingleCacheCarUpload(id = id)
+    fun changeCachedUploadCarDetails(
+        cachedCarId: String,
+        carBrand: String,
+        carModel: String,
+        carType: String
+    ) = viewModelScope.launch {
+        addCarRepository.changeCachedUploadCarDetails(cachedCarId, carBrand, carModel, carType)
+    }
+
+    fun changeCachedUploadCarPrice(cachedCarId: String,price: String) = viewModelScope.launch {
+        addCarRepository.changeCachedUploadCarPrice(cachedCarId, price)
+    }
+    fun changeCachedUploadCarLocation(cachedCarId: String,lat: String,lng: String) = viewModelScope.launch {
+        addCarRepository.changeCachedUploadCarLocation(cachedCarId, lat, lng)
+    }
+    fun addCarImages(carImage: CachedCarImages) {
+        viewModelScope.launch {
+            dbService.addCarImages(carImage)
+        }
+    }
+
+    fun getAllCachedCarImagesByCarId(carId: Int): LiveData<List<CachedCarImages>> {
+        return dbService.getAllCachedCarImagesByCarId(carId)
+    }
+
+
+
+
 
 
 

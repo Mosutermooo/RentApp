@@ -1,6 +1,7 @@
 package com.example.rentapp.view_models
 
 import android.app.Application
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,6 +17,7 @@ import com.example.rentapp.repositories.AuthRepositoryTestImpl
 import com.example.rentapp.uitls.Const
 import com.example.rentapp.uitls.Resource
 import com.example.rentapp.uitls.UserDataStore
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -159,6 +161,14 @@ class AuthViewModel(
         return Resource.Error(null, response.message())
     }
 
+    fun signInWithGoogle(account: GoogleSignInAccount?, username: String) = viewModelScope.launch {
+        account?.let {
+            val name = account.givenName
+            val lastname = account.familyName
+            val email = account.email
+            Log.e("user google sign in data", "$name, $lastname, $email, $username")
+        }
+    }
 
 }
 

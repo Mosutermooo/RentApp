@@ -2,11 +2,13 @@ package com.example.rentapp.uitls
 
 import android.app.Dialog
 import android.content.Context
+import android.location.Address
+import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import com.example.rentapp.R
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 object Resources {
 
@@ -47,5 +49,17 @@ object Resources {
     fun millisToDays(millis: Long): Long{
         return millis / 86400000L
     }
+
+    fun getAddressFromLatLng(lat: Double, lng: Double, context: Context): Address? {
+        val geocoder = Geocoder(context.applicationContext, Locale.getDefault())
+        var result: String? = null
+        val addressList: List<Address>? = geocoder.getFromLocation(lat, lng, 1)
+        if (addressList != null && addressList.size > 0) {
+            return addressList[0]
+        }
+        return null
+    }
+
+    fun getRandomNumberId() : Int = System.currentTimeMillis().toInt()
 
 }

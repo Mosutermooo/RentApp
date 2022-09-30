@@ -28,6 +28,7 @@ class RentViewModel(private var app: Application) : AndroidViewModel(app) {
     val rentState : MutableStateFlow<Resource<RentCarResponseParams>> = MutableStateFlow(Resource.Idle())
     val userRentsState : MutableStateFlow<Resource<RentsResponseParams>> = MutableStateFlow(Resource.Idle())
     val rentsByRentIdState : MutableStateFlow<Resource<RentsResponseParams>> = MutableStateFlow(Resource.Idle())
+    val allRentsState : MutableStateFlow<Resource<RentsResponseParams>> = MutableStateFlow(Resource.Idle())
     val dataStore = UserDataStore(app)
     val nc = NetworkConnection()
 
@@ -155,6 +156,42 @@ class RentViewModel(private var app: Application) : AndroidViewModel(app) {
                 }
             }else{
                 Resource.Error(body, "There is no data")
+            }
+        }
+        return Resource.Error(null, response.message())
+    }
+
+    fun getAllRents() = viewModelScope.launch {
+        try {
+            allRentsState.emit(Resource.Loading())
+            if(nc.init(app)){
+                val response = repository.getAllRents()
+                allRentsState.emit(handleAllRentsResponse(response))
+            }else{
+                allRentsState.emit(Resource.Internet(app.getString(R.string.no_internet_connection)))
+            }
+        }catch (t: Throwable){
+            when(t){
+                is IOException -> {
+                    allRentsState.emit(Resource.Error(null,"IOException"))
+                }
+                else -> allRentsState.emit(Resource.Error(null, t.message.toString()))
+            }
+        }catch (s: SocketTimeoutException){
+            allRentsState.emit(Resource.Error(null, "Socket-Error"))
+        }catch (c: ConnectException){
+            allRentsState.emit(Resource.Error(null, "Connect-Exception"))
+        }
+    }
+
+    private fun handleAllRentsResponse(response: Response<RentsResponseParams>): Resource<RentsResponseParams> {
+        if(response.isSuccessful){
+            response.body()?.let {
+                if(it.success){
+                    return Resource.Success(it)
+                }else{
+                    return Resource.Error(it, it.message)
+                }
             }
         }
         return Resource.Error(null, response.message())

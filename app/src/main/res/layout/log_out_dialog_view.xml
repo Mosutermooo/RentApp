@@ -10,9 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Are You Sure?"
+        android:text="@string/are_you_sure"
         android:textAlignment="textStart"
-        android:textSize="18dp" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView11"
@@ -52,7 +55,7 @@
         android:text="@string/cancel"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView12"
+        app:layout_constraintEnd_toStartOf="@+id/Logout"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 

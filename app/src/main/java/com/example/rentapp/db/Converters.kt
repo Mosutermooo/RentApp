@@ -1,8 +1,7 @@
 package com.example.rentapp.db
 
+import android.net.Uri
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
-import com.example.models.Car
 import com.example.models.CarImage
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -30,8 +29,13 @@ class Converters {
         val type = object : TypeToken<List<CarImage>>() {}.type
         val carImages = gson.fromJson<List<CarImage>>(carImageString, type)
         return carImages
-
     }
+
+    @TypeConverter
+    fun listToJson(value: List<String>?): String = Gson().toJson(value)
+
+    @TypeConverter
+    fun jsonToList(value: String) = Gson().fromJson(value, Array<String>::class.java).toList()
 
 
 

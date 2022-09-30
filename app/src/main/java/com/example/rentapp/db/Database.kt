@@ -5,12 +5,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.models.Car
+import com.example.rentapp.models.add_car_cache_models.CacheUploadCarModel
+import com.example.rentapp.models.add_car_cache_models.CachedCarImages
 import com.example.rentapp.uitls.Const.DB_NAME
 import com.example.rentapp.uitls.Const.DB_VERSION
 
 
 @androidx.room.Database(
-    entities = [Car::class],
+    entities = [Car::class, CacheUploadCarModel::class, CachedCarImages::class],
     version = DB_VERSION
 )
 @TypeConverters(Converters::class)

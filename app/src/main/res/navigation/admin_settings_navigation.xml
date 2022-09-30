@@ -8,5 +8,55 @@
         android:id="@+id/adminSettingsFragment"
         android:name="com.example.rentapp.ui.fragments.admin_settings.AdminSettingsFragment"
         android:label="fragment_settings2"
-        tools:layout="@layout/fragment_admin_settings" />
+        tools:layout="@layout/fragment_admin_settings" >
+        <action
+            android:id="@+id/action_adminSettingsFragment_to_seeAllLocations"
+            app:destination="@id/seeAllLocations"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_adminSettingsFragment_to_deleteLocations"
+            app:destination="@id/deleteLocations"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_adminSettingsFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_adminSettingsFragment_to_allRentFragment"
+            app:destination="@id/allRentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.example.rentapp.ui.fragments.location_fragments.AddLocationFragment"
+        android:label="fragment_add_location"
+        tools:layout="@layout/fragment_add_location"
+        />
+    <fragment
+        android:id="@+id/deleteLocations"
+        android:name="com.example.rentapp.ui.fragments.location_fragments.DeleteLocations"
+        android:label="fragment_delete_locations"
+        tools:layout="@layout/fragment_delete_locations" />
+    <fragment
+        android:id="@+id/seeAllLocations"
+        android:name="com.example.rentapp.ui.fragments.location_fragments.SeeAllLocations"
+        android:label="fragment_see_all_locations"
+        tools:layout="@layout/fragment_see_all_locations" />
+    <fragment
+        android:id="@+id/allRentFragment"
+        android:name="com.example.rentapp.ui.fragments.admin_settings.AllRentFragment"
+        android:label="fragment_all_rent_framgent"
+        tools:layout="@layout/fragment_all_rent_framgent" />
 </navigation>

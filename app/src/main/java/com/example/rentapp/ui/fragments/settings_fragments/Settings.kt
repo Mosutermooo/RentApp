@@ -62,6 +62,10 @@ class Settings : Fragment() {
             }
         }
 
+        binding.LocateUs.setOnClickListener {
+            findNavController().navigate(R.id.action_settings_to_seeAllLocations2)
+        }
+
         binding.Rents.setOnClickListener{
             findNavController().navigate(R.id.action_settings_to_userRentsFragment)
         }

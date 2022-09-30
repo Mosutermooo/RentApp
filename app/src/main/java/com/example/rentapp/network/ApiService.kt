@@ -1,6 +1,8 @@
 package com.example.rentapp.network
 
 import com.example.models.*
+import com.example.rentapp.models.locations_model.LocationModelRequestParams
+import com.example.rentapp.models.locations_model.LocationModelResponseParams
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -49,5 +51,23 @@ interface ApiService {
     suspend fun getRentsByRentId(
         @Path("rentId") rentId: String
     ) : Response<RentsResponseParams>
+
+    @GET("cars/rents")
+    suspend fun getAllRents(): Response<RentsResponseParams>
+
+
+    @POST("admin/addLocation")
+    suspend fun addLocation(
+        @Body params: LocationModelRequestParams
+    ): Response<LocationModelResponseParams>
+
+    @DELETE("user/location/{id}")
+    suspend fun deleteLocation(
+        @Path("id") id: Int
+    ): Response<LocationModelResponseParams>
+
+    @GET("user/locations")
+    suspend fun allLocations(): Response<LocationModelResponseParams>
+
 
 }

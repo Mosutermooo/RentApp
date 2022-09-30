@@ -115,7 +115,7 @@ class ViewRentFragment : Fragment() {
             if(it.user.name != "" && it.user.lastname != ""){
                 binding.userNameAndLastname.text = "${it.user.name} - ${it.user.lastname}"
             }else{
-                binding.userNameAndLastname.text = "Username: ${it.user.username}"
+                binding.userNameAndLastname.text = "Username: ${it.user.username} "
             }
 
 

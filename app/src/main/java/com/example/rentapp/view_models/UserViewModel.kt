@@ -17,6 +17,7 @@ import com.example.rentapp.uitls.Const.password
 import com.example.rentapp.uitls.Const.role
 import com.example.rentapp.uitls.Const.userId
 import com.example.rentapp.uitls.Const.username
+import com.example.rentapp.uitls.NetworkConnection
 import com.example.rentapp.uitls.Resource
 import com.example.rentapp.uitls.UserDataStore
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,13 +42,19 @@ class UserViewModel(
         ApiInstance.apiService(app)
     )
 
+    val nc = NetworkConnection().init(app)
+
     fun getUserData() = viewModelScope.launch {
         val username = dataStore.read(username)
         val password = dataStore.read(password)
         val userId = dataStore.read(userId)
         val role = dataStore.read(role)
         if(username != null && password != null && userId != null && role != null){
-            reAuthUser(username, password, userId, role)
+            if(nc){
+                reAuthUser(username, password, userId, role)
+            }else{
+                getUserDataState.emit(Resource.Error(null, "Error Not Logged In"))
+            }
         }else{
             getUserDataState.emit(Resource.Error(null, "Error Not Logged In"))
         }

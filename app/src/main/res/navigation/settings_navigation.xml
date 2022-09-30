@@ -12,7 +12,18 @@
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settings_to_userRentsFragment"
-            app:destination="@id/userRentsFragment" />
+            app:destination="@id/userRentsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settings_to_seeAllLocations2"
+            app:destination="@id/seeAllLocations2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/userRentsFragment"
@@ -23,6 +34,11 @@
             android:id="@+id/action_userRentsFragment_to_viewRentFragment"
             app:destination="@id/viewRentFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/seeAllLocations2"
+        android:name="com.example.rentapp.ui.fragments.location_fragments.SeeAllLocations"
+        android:label="fragment_see_all_locations"
+        tools:layout="@layout/fragment_see_all_locations" />
     <fragment
         android:id="@+id/viewRentFragment"
         android:name="com.example.rentapp.ui.fragments.settings_fragments.ViewRentFragment"
